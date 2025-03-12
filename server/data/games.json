@@ -1,0 +1,26 @@
+{
+  "edd30ec3-ba8a-4b7b-911e-aa500fdda980": {
+    "title": "Test game",
+    "category": "Action",
+    "maxLevel": "12",
+    "imageUrl": "https://m.media-amazon.com/images/M/MV5BNjM0NTgyN2ItOTI5Yi00MjZmLTlkNTYtODQ3MmIzMjdjYWQwXkEyXkFqcGc@._V1_.jpg",
+    "summary": "Test",
+    "_id": "edd30ec3-ba8a-4b7b-911e-aa500fdda980"
+  },
+  "2c04ba8b-2f71-4d79-9d69-2cd3474b54f6": {
+    "title": "MK3 Ultimate",
+    "category": "Fighting",
+    "maxLevel": "10",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f9/Ultimate_MK3.png/220px-Ultimate_MK3.png",
+    "summary": "Ultimate Mortal Kombat 3 was released to arcades in 1995. It is an update of Mortal Kombat 3, featuring altered gameplay, additional characters, and new arenas. Various home versions of the game were released soon afterward, although none of these were completely identical to the arcade version.",
+    "_id": "2c04ba8b-2f71-4d79-9d69-2cd3474b54f6"
+  },
+  "808ea69a-3671-44f4-8d22-31126dca50e7": {
+    "title": "Counter Strike 1.6",
+    "category": "FPS",
+    "maxLevel": "100",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/en/6/67/Counter-Strike_Box.jpg",
+    "summary": "Play the world's number 1 online action game. Engage in an incredibly realistic brand of terrorist warfare in this wildly popular team-based game.",
+    "_id": "808ea69a-3671-44f4-8d22-31126dca50e7"
+  }
+}

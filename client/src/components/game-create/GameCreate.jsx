@@ -1,9 +1,23 @@
+import gameService from "../../services/gameService";
+import { useNavigate } from "react-router";
+
 export default function GameCreate() {
+  const navigate = useNavigate();
+
+  const submitAction = async (formData) => {
+    const gameData = Object.fromEntries(formData);
+
+    await gameService.create(gameData);
+
+    navigate("/games");
+  };
+
   return (
     <section id="create-page" className="auth">
-      <form id="create">
+      <form id="create" action={submitAction}>
         <div className="container">
           <h1>Create Game</h1>
+
           <label htmlFor="leg-title">Legendary title:</label>
           <input
             type="text"
@@ -39,6 +53,7 @@ export default function GameCreate() {
 
           <label htmlFor="summary">Summary:</label>
           <textarea name="summary" id="summary"></textarea>
+
           <input className="btn submit" type="submit" value="Create Game" />
         </div>
       </form>
