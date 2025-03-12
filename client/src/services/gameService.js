@@ -18,5 +18,9 @@ export default {
 
     create(gameData) {
         return request('POST', baseUrl, gameData);
+    },
+
+    delete(gameId) {
+        return request('DELETE', `${baseUrl}/${gameId}`)
     }
 }
