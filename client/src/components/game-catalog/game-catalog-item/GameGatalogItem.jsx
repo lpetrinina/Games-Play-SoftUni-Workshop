@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 export default function GameCatalogItem({ _id, title, category, imageUrl }) {
   return (
     <div className="allGames">
@@ -6,9 +8,9 @@ export default function GameCatalogItem({ _id, title, category, imageUrl }) {
         <h6>{category}</h6>
         <h2>{title}</h2>
 
-        <a href="#" className="details-button">
+        <Link to={`/games/${_id}/details`} className="details-button">
           Details
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -12,6 +12,10 @@ export default {
         return games;
     },
 
+    getOne(gameId) {
+        return request('GET', `${baseUrl}/${gameId}`)
+    },
+
     create(gameData) {
         return request('POST', baseUrl, gameData);
     }
