@@ -13,14 +13,18 @@ export default {
     },
 
     getOne(gameId) {
-        return request('GET', `${baseUrl}/${gameId}`)
+        return request('GET', `${baseUrl}/${gameId}`);
     },
 
     create(gameData) {
         return request('POST', baseUrl, gameData);
     },
 
+    edit(gameId, gameData) {
+        return request('PUT', `${baseUrl}/${gameId}`, { ...gameData, _id: gameId });
+    },
+
     delete(gameId) {
-        return request('DELETE', `${baseUrl}/${gameId}`)
+        return request('DELETE', `${baseUrl}/${gameId}`);
     }
 }
