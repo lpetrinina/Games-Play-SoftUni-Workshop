@@ -5,15 +5,19 @@ import { Link } from "react-router";
 import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
 import CommentsCreate from "../comments-create/CommentsCreate";
+import commentService from "../../services/commentService";
 
 export default function GameDetails({ email }) {
   const navigate = useNavigate();
   const { gameId } = useParams();
 
   const [game, setGame] = useState({});
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     gameService.getOne(gameId).then((result) => setGame(result));
+
+    commentService.getAll(gameId).then((result) => setComments(result));
   }, [gameId]);
 
   const gemeDeleteClickHandler = async () => {
@@ -27,6 +31,10 @@ export default function GameDetails({ email }) {
 
     await gameService.delete(gameId);
     navigate("/games");
+  };
+
+  const commentsCreateHandler = (newComment) => {
+    setComments((comments) => [...comments, newComment]);
   };
 
   return (
@@ -43,7 +51,7 @@ export default function GameDetails({ email }) {
         <p className="text">{game.summary}</p>
 
         {/* <!-- Bonus ( for Guests and Users ) --> */}
-        <CommentsShow />
+        <CommentsShow comments={comments} onCreate={commentsCreateHandler} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         <div className="buttons">
