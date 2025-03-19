@@ -36,4 +36,13 @@ export const useAllGames = () => {
     }
 }
 
+export const useGame = (gameId) => {
+    const [game, setGame] = useState({});
+
+    useEffect(() => {
+        request('GET', `${baseUrl}/${gameId}`)
+            .then((data) => setGame(data))
+    }, [gameId])
+
+    return { game }
 }
