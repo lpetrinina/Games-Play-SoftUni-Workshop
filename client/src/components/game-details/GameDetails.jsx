@@ -51,7 +51,7 @@ export default function GameDetails({ email }) {
         <p className="text">{game.summary}</p>
 
         {/* <!-- Bonus ( for Guests and Users ) --> */}
-        <CommentsShow comments={comments} onCreate={commentsCreateHandler} />
+        <CommentsShow comments={comments} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
         <div className="buttons">
@@ -67,7 +67,11 @@ export default function GameDetails({ email }) {
 
       {/* <!-- Bonus -->
         <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-      <CommentsCreate email={email} gameId={gameId} />
+      <CommentsCreate
+        email={email}
+        gameId={gameId}
+        onCreate={commentsCreateHandler}
+      />
     </section>
   );
 }
