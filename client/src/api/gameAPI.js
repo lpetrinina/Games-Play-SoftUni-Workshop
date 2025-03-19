@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+
 import { request } from "../utils/requester";
 import { UserContext } from "../contexts/UserContext";
 
@@ -19,5 +20,20 @@ export const useCreateGame = () => {
     }
 
     return { create }
+}
+
+//use hook on mount
+export const useAllGames = () => {
+    const [games, setGames] = useState([]);
+
+    useEffect(() => {
+        request('GET', baseUrl)
+            .then((result) => setGames(result));
+    }, [])
+
+    return {
+        games
+    }
+}
 
 }

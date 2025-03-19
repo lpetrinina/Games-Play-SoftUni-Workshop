@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
-import gameService from "../../services/gameService";
 import GameCatalogItem from "./game-catalog-item/GameGatalogItem";
+import { useAllGames } from "../../api/gameAPI";
 
 export default function GameCatalog() {
-  const [games, setGames] = useState([]);
+  const { games } = useAllGames();
 
-  useEffect(() => {
-    gameService.getAll().then((result) => {
-      setGames(result);
-    });
-  }, []);
+  console.log(games);
 
   return (
     <section id="catalog-page">

@@ -16,9 +16,6 @@ export default {
         return request('GET', `${baseUrl}/${gameId}`);
     },
 
-    create(gameData) {
-        return request('POST', baseUrl, gameData);
-    },
 
     edit(gameId, gameData) {
         return request('PUT', `${baseUrl}/${gameId}`, { ...gameData, _id: gameId });
