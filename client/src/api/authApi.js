@@ -41,16 +41,28 @@ export const useRegister = () => {
     }
 }
 
-//use hook 
+//use hook on mount
 export const useLogout = () => {
-    const { accessToken } = useContext(UserContext)
+    const { accessToken, userLogoutHandler } = useContext(UserContext);
 
-    const options = {
-        headers: {
-            'X-Authorization': accessToken
+    useEffect(() => {
+
+        if (!accessToken) {
+            return;
         }
-    }
 
-    return request('GET', `${baseUrl}/logout`, null, options)
+        const options = {
+            headers: {
+                'X-Authorization': accessToken
+            }
+        }
+
+        request('GET', `${baseUrl}/logout`, null, options).then(() => userLogoutHandler());
+
+    }, [accessToken, userLogoutHandler]);
+
+    return {
+        isLoggedOut: !!accessToken,
+    }
 
 }
