@@ -13,10 +13,10 @@ import GameEdit from "./components/game-edit/GameEdit";
 import "./App.css";
 
 function App() {
-  const [email, setEmail] = useState("");
+  const [authData, setAuthData] = useState({});
 
-  const userLoginHandler = (authData) => {
-    setEmail(authData.email);
+  const userLoginHandler = (currentUserData) => {
+    setAuthData(currentUserData);
   };
 
   return (
@@ -29,7 +29,7 @@ function App() {
           <Route path="/games" element={<GameCatalog />} />
           <Route
             path="/games/:gameId/details"
-            element={<GameDetails email={email} />}
+            element={<GameDetails email={authData.email} />}
           />
           <Route path="/games/:gameId/edit" element={<GameEdit />} />
           <Route path="/games/create" element={<GameCreate />} />
