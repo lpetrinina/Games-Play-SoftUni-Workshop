@@ -24,3 +24,18 @@ export default function useLogin() {
         login,
     }
 }
+
+//use hook on event
+export const useRegister = () => {
+
+    const register = async (email, password) => {
+
+        const result = await request('POST', `${baseUrl}/register`, { email, password });
+
+        return result;
+    }
+
+    return {
+        register
+    }
+}
