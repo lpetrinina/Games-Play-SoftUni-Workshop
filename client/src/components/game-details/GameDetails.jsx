@@ -4,9 +4,9 @@ import { Link } from "react-router";
 
 import gameService from "../../services/gameService";
 import CommentsShow from "../comments-show/CommentsShow";
-import CommentsCreate from "../comments-create/CommentsAdd";
+import CommentsCreate from "../comments-create/CommentsCreate";
 
-export default function GameDetails() {
+export default function GameDetails({ email }) {
   const navigate = useNavigate();
   const { gameId } = useParams();
 
@@ -59,7 +59,7 @@ export default function GameDetails() {
 
       {/* <!-- Bonus -->
         <!-- Add Comment ( Only for logged-in users, which is not creators of the current game ) --> */}
-      <CommentsCreate />
+      <CommentsCreate email={email} />
     </section>
   );
 }
