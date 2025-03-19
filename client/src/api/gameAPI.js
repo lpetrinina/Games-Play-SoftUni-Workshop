@@ -2,21 +2,22 @@ import { useContext, useEffect, useState } from "react";
 
 import { request } from "../utils/requester";
 import { UserContext } from "../contexts/UserContext";
+import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3030/data/games';
 
 // use hook on event
 export const useCreateGame = () => {
-    const { accessToken } = useContext(UserContext)
+    const { request } = useAuth();
 
-    const options = {
-        headers: {
-            'X-Authorization': accessToken
-        }
-    }
+    // const options = {
+    //     headers: {
+    //         'X-Authorization': accessToken
+    //     }
+    // }
 
     const create = (gameData) => {
-        return request('POST', baseUrl, gameData, options);
+        return request('POST', baseUrl, gameData);
     }
 
     return { create }
@@ -36,6 +37,7 @@ export const useAllGames = () => {
     }
 }
 
+//use hook on mount
 export const useGame = (gameId) => {
     const [game, setGame] = useState({});
 
@@ -46,3 +48,25 @@ export const useGame = (gameId) => {
 
     return { game }
 }
+
+//use hook on event
+export const useEditGame = () => {
+    const { request } = useAuth();
+
+    const edit = (gameId, gameData) => {
+        return request('PUT', `${baseUrl}/${gameId}`, { ...gameData, _id: gameId })
+
+    }
+    return { edit }
+}
+
+export const useDeleteGame = () => {
+    const { request } = useAuth();
+
+    const deleteGame = (gameId) => {
+        return request('DELETE', `${baseUrl}/${gameId}`)
+    }
+
+    return { deleteGame }
+}
+
