@@ -10,7 +10,7 @@ import useAuth from "../../hooks/useAuth";
 
 export default function GameDetails() {
   const navigate = useNavigate();
-  const { email } = useAuth();
+  const { email, _id: userId } = useAuth();
   const { deleteGame } = useDeleteGame();
   const { gameId } = useParams();
   const { game } = useGame(gameId);
@@ -34,6 +34,8 @@ export default function GameDetails() {
     navigate("/games");
   };
 
+  const isOwner = userId === game._ownerId;
+
   const commentsCreateHandler = (newComment) => {
     setComments((comments) => [...comments, newComment]);
   };
@@ -55,15 +57,17 @@ export default function GameDetails() {
         <CommentsShow comments={comments} />
 
         {/* <!-- Edit/Delete buttons ( Only for creator of this game )  --> */}
-        <div className="buttons">
-          <Link to={`/games/${gameId}/edit`} className="button">
-            Edit
-          </Link>
+        {isOwner && (
+          <div className="buttons">
+            <Link to={`/games/${gameId}/edit`} className="button">
+              Edit
+            </Link>
 
-          <button onClick={gemeDeleteClickHandler} className="button">
-            Delete
-          </button>
-        </div>
+            <button onClick={gemeDeleteClickHandler} className="button">
+              Delete
+            </button>
+          </div>
+        )}
       </div>
 
       {/* <!-- Bonus -->
