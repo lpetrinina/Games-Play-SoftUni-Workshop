@@ -48,6 +48,7 @@ export const useLatestGames = () => {
         const searchParams = new URLSearchParams({
             sortBy: '_createdOn desc',
             pageSize: PAGE_SIZE,
+            select: '_id,imageUrl,title'
         });
 
         request('GET', `${baseUrl}?${searchParams.toString()}`)
