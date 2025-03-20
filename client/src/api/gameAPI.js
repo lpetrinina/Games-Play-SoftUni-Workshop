@@ -27,6 +27,7 @@ export const useCreateGame = () => {
 export const useAllGames = () => {
     const [games, setGames] = useState([]);
 
+
     useEffect(() => {
         request('GET', baseUrl)
             .then((result) => setGames(result));
@@ -35,6 +36,29 @@ export const useAllGames = () => {
     return {
         games
     }
+}
+
+//use hook on mount
+export const useLatestGames = () => {
+    const [latestGames, setLatestGames] = useState([]);
+    const PAGE_SIZE = 3;
+
+    useEffect(() => {
+
+        const searchParams = new URLSearchParams({
+            sortBy: '_createdOn desc',
+            pageSize: PAGE_SIZE,
+        });
+
+        request('GET', `${baseUrl}?${searchParams.toString()}`)
+            .then((result) => setLatestGames(result));
+
+    }, [PAGE_SIZE])
+
+    return {
+        latestGames
+    }
+
 }
 
 //use hook on mount
@@ -69,4 +93,3 @@ export const useDeleteGame = () => {
 
     return { deleteGame }
 }
-
